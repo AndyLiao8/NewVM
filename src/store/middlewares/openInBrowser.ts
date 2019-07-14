@@ -1,4 +1,4 @@
-import { openInBrowser } from '../../constants/actionType';
+import { openInBrowser } from 'src/constants/actionType';
 import { Store } from 'redux/index';
 
 export default (store: Store) => next => (action) => {

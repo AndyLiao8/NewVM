@@ -16,18 +16,18 @@ const handleNetwork = axiosPromise => new Promise((resolve, reject) => {
 });
 class RestClient {
     /* propos */
-    path:string;
+    API:string;
     timeout: number;
     source: CancelTokenSource;
 
-    constructor(path: string, timeout?: number) {
-      this.path = path;
+    constructor(API: string, timeout?: number) {
+      this.API = API;
       this.timeout = timeout || 3e4;
       this.source = axios.CancelToken.source();
     }
   
     get(params: any) {
-        let url = this.path;
+        let url = this.API;
         if (params) {
             url = `${url}?${queryString.encode(params)}`;
         }

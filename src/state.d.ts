@@ -1,7 +1,29 @@
-import { customModuleState } from './view/customModule/reducer';
+export interface Conversation {
+    id: number;
+    subject: string;
+    lastMessage: string;
+}
+
+export interface ConversationState {
+    isLoading: boolean;
+    conversations: Conversation[];
+}
+
+export interface SiteConfig {
+    defaultTwitterAmount: number;
+    isPartnerSite: boolean;
+    maxTwitterAmount: number;
+    siteId: number;
+}
+
+export interface SiteConfigState {
+    isLoading: boolean;
+    config: SiteConfig;
+}
 
 type State = {
-    customModule: customModuleState;
+    siteConfig: SiteConfigState;
+    conversation: ConversationState;
 }
 
 export default State;

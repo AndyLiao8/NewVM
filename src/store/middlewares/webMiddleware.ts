@@ -1,4 +1,4 @@
-import webAdapter from '../../services/web/adapter';
+import webAdapter from 'src/services/webAdapter';
 
 export default store => next => (action) => {
     webAdapter(store, action);

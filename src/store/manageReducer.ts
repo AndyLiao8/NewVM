@@ -1,8 +1,6 @@
 import reduceReducers from '../utils/reduceReducers';
-import modulesInfo from '../view/register';
-import { buildReducer } from '../utils/storeHelper';
+import reducers, { reducerOrder } from './reducers';
 
-const reducers = buildReducer(modulesInfo);
-const reducer = reduceReducers(reducers);
+const reducer = reduceReducers(reducers, reducerOrder);
 
 export default (state, action) => reducer(state, action);

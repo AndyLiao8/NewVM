@@ -1,15 +1,15 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import 'antd/dist/antd.css';
-import Home from './view/customModule/container';
+import App from './container/App';
 
 
 const container = document.getElementById('app');
 export default (store) => {
     ReactDOM.render((
         <Provider store={store} >
-            <Home />
+            <App />
         </Provider>
     ), container);
 };
