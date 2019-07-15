@@ -8,7 +8,7 @@ export interface ShowSiteConfigProps {
     maxTwitterAmount: number;
     siteId: number;
     totalConversations: number;
-    onClick: (Event) => void;
+    onLoadSiteInfo: (Event) => void;
 }
 export default ({ isLoading = false, totalConversations = 0, ...others }: ShowSiteConfigProps) => (
     <div>
@@ -26,7 +26,7 @@ export default ({ isLoading = false, totalConversations = 0, ...others }: ShowSi
         <div>
             <Button
                 loading={isLoading}
-                onClick={others.onClick}
+                onClick={others.onLoadSiteInfo}
                 type="primary"
             >
                 Load Site Info

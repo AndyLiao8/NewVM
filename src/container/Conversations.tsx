@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => ({
     initializeData() {
         dispatch(getConversations());
     },
-    onClick() {
+    onReloadData() {
         dispatch(getConversations());
     }
 });

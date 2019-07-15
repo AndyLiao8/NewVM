@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    onClick() {
+    onLoadSiteInfo() {
         dispatch(getSiteConfig(499504));
     }
 });
