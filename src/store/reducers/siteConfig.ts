@@ -20,7 +20,8 @@ const stateMapping = {
     [actionTypes.updateConfig](state:SiteConfigState, action) {
         return Object.assign({}, state, {
             isLoading: false,
-        }, Object.assign({}, state.config, action.payload));
+            config: Object.assign({}, state.config, action.payload),
+        });
     }
 };
 
