@@ -1,3 +1,4 @@
+import { List } from 'immutable';
 import { Table, Layout, Button } from 'antd';
 import * as React from 'react';
 import { Conversation } from 'src/state';
@@ -6,7 +7,7 @@ import SiteInfo from 'src/container/share/SiteInfo';
 export interface ConversationProps {
     isLoading: boolean;
     isInitialized: boolean;
-    data: Conversation[];
+    data: List<Conversation>;
     onClick: (Event) => void;
     initializeData: () => void;
 }
@@ -41,9 +42,9 @@ class Conversations extends React.PureComponent<ConversationProps> {
   render() {
     return (
         <Layout>
-            <SiteInfo totalConversations={this.props.data.length} />
+            <SiteInfo totalConversations={this.props.data.size} />
             {this.props.isLoading && <div>Loading...</div>}
-            <Table columns={columnsConfig()} dataSource={this.props.data} />;
+            <Table columns={columnsConfig()} dataSource={this.props.data.toArray()} />;
             <div>
                 <Button
                   loading={this.props.isLoading}

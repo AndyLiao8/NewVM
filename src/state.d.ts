@@ -1,3 +1,5 @@
+import { List } from 'immutable';
+
 export interface Conversation {
     id: number;
     subject: string;
@@ -7,7 +9,7 @@ export interface Conversation {
 export interface ConversationState {
     isLoading: boolean;
     isInitialized: boolean;
-    conversations: Conversation[];
+    conversations: List<Conversation>;
 }
 
 export interface SiteConfig {

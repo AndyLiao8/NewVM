@@ -1,10 +1,11 @@
+import { List } from 'immutable';
 import { ConversationState } from 'src/state';
 import * as actionTypes from 'src/constants/actionType';
 
 const defaultState: ConversationState  = {
     isLoading: false,
     isInitialized: false,
-    conversations: [],
+    conversations: List(),
 };
 
 const stateMapping = {
@@ -17,7 +18,7 @@ const stateMapping = {
         return {
             isLoading: false,
             isInitialized: true,
-            conversations: [].concat(action.payload),
+            conversations: List(action.payload),
         };
     }
 };
