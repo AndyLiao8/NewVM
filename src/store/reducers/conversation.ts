@@ -3,6 +3,7 @@ import * as actionTypes from 'src/constants/actionType';
 
 const defaultState: ConversationState  = {
     isLoading: false,
+    isInitialized: false,
     conversations: [],
 };
 
@@ -15,6 +16,7 @@ const stateMapping = {
     [actionTypes.updateConversations](state, action) {
         return {
             isLoading: false,
+            isInitialized: true,
             conversations: [].concat(action.payload),
         };
     }

@@ -22,7 +22,11 @@ export default ({ isLoading = false, ...others }: ShowSiteConfigProps) => (
             </ul>
         )}
         <div>
-            <Button onClick={others.onClick} type="primary">
+            <Button
+                loading={isLoading}
+                onClick={others.onClick}
+                type="primary"
+            >
                 Load Site Info
             </Button>
         </div>

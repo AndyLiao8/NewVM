@@ -6,6 +6,7 @@ export interface Conversation {
 
 export interface ConversationState {
     isLoading: boolean;
+    isInitialized: boolean;
     conversations: Conversation[];
 }
 

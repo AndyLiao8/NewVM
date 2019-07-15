@@ -6,10 +6,14 @@ import { getConversations } from 'src/actions/creator';
 
 const mapStateToProps = (state) => ({
     isLoading: selectors.getConversationIsLoading(state),
+    isInitialized: selectors.GetConversationisInitialized(state),
     data: selectors.getConversatios(state),
 });
 
 const mapDispatchToProps = dispatch => ({
+    initializeData() {
+        dispatch(getConversations());
+    },
     onClick() {
         dispatch(getConversations());
     }
