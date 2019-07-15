@@ -7,9 +7,10 @@ export interface ShowSiteConfigProps {
     isPartnerSite: boolean;
     maxTwitterAmount: number;
     siteId: number;
+    totalConversations: number;
     onClick: (Event) => void;
 }
-export default ({ isLoading = false, ...others }: ShowSiteConfigProps) => (
+export default ({ isLoading = false, totalConversations = 0, ...others }: ShowSiteConfigProps) => (
     <div>
         <h3>Site Info</h3>
         {isLoading && <div>loading...</div>}
@@ -19,6 +20,7 @@ export default ({ isLoading = false, ...others }: ShowSiteConfigProps) => (
                 <li>Twitter's Amount: {others.defaultTwitterAmount}</li>
                 <li>If Partner Site: {others.isPartnerSite}</li>
                 <li>Max Twitter Amount: {others.maxTwitterAmount}</li>
+                <li>Conversation Count: {totalConversations}</li>
             </ul>
         )}
         <div>
