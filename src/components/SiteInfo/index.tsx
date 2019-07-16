@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button } from 'antd';
+import Button from '@material-ui/core/Button';
 
 export interface ShowSiteConfigProps {
     isLoading: boolean;
@@ -25,9 +25,9 @@ export default ({ isLoading = false, totalConversations = 0, ...others }: ShowSi
         )}
         <div>
             <Button
-                loading={isLoading}
+                variant="contained"
                 onClick={others.onLoadSiteInfo}
-                type="primary"
+                color="primary"
             >
                 Load Site Info
             </Button>
