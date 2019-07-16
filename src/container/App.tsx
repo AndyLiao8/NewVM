@@ -15,7 +15,7 @@ const App = (props: AppProps) => (
 );
 
 const mapStateToProps = (state) => ({
-    totalConversations: selectors.getConversatios(state).size,
+    totalConversations: selectors.getConversations(state).size,
 });
 
 export default connect(mapStateToProps)(App);

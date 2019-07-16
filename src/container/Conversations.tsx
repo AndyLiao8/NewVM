@@ -7,7 +7,7 @@ import { getConversations } from 'src/actions/creator';
 const mapStateToProps = (state) => ({
     isLoading: selectors.getConversationIsLoading(state),
     isInitialized: selectors.GetConversationisInitialized(state),
-    data: selectors.getConversatios(state),
+    data: selectors.getConversations(state),
 });
 
 const mapDispatchToProps = dispatch => ({
