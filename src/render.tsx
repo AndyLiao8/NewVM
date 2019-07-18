@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import App from './container/App';
+import App from './View/App';
 
 
 const container = document.getElementById('app');

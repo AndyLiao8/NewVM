@@ -1,0 +1,1 @@
+export const openInBrowser = 'common.openInBrowser';
