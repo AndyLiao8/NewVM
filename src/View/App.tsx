@@ -1,10 +1,9 @@
 import * as React from 'react';
-import Home from './Home/HomeContainer';
 
 const App = () => (
-    <div>
-        <Home />
-    </div>
+    <React.Fragment>
+        Hello world
+    </React.Fragment>
 );
 
 export default App;
