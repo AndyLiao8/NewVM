@@ -1,5 +1,4 @@
 import { State } from 'src/vm.domain/interfaces/IGlobalState';
 
-export const getSelectedArticleId = (state: State) => state.article.selectedArticleId;
-export const getIfLoadingArticle = (state: State) => state.article.ifLoadingArticle;
 export const getArticles = (state: State) => state.article.articles;
+export const getArticleById = (state: State, id: number) => state.article.articles.get(id);

@@ -1,9 +1,7 @@
-import article from './articleService';
-import tag from './tagService';
+import article from './article';
 
-export const reducerOrder = [ 'article', 'tag' ];
+export const reducerOrder = [ 'article' ];
 
 export default {
     article,
-    tag,
 };

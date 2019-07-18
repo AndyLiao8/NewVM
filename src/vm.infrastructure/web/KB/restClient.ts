@@ -2,7 +2,13 @@ import axios from 'axios';
 import queryString from 'querystring';
 import { CancelTokenSource} from 'axios'
 
-const handleNetwork = axiosPromise => new Promise((resolve, reject) => {
+export interface IResponse {
+    isSuccess: boolean;
+    message: string;
+    data: any;
+}
+
+const handleNetwork = axiosPromise => new Promise<IResponse>((resolve, reject) => {
     axiosPromise.then(response => resolve(response.data))
     .catch((error) => {
         if (error.response) {
@@ -26,28 +32,41 @@ class RestClient {
       this.source = axios.CancelToken.source();
     }
   
-    get(params: any) {
+    get(params = null) {
         let url = this.API;
         if (params) {
             url = `${url}?${queryString.encode(params)}`;
         }
         return handleNetwork(axios.get(url, {
             headers: {
-            Accept: 'application/json',
+                Accept: 'application/json',
             },
         }));
     }
   
-    post(data) {
-
+    post(params) {
+        return handleNetwork(axios.post(this.API, params, {
+            headers: {
+                Accept: 'application/json',
+            },
+        }));
     }
 
-    put(data) {
-
+    put(params) {
+        return handleNetwork(axios.put(this.API, params, {
+            headers: {
+                Accept: 'application/json',
+            },
+        }));
     }
 
-    delete(data) {
-        
+    delete(params = {}) {
+        return handleNetwork(axios.put(this.API, {
+            headers: {
+                Accept: 'application/json',
+            },
+            data: params
+        }));
     }
   }
 
