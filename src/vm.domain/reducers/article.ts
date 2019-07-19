@@ -19,6 +19,8 @@ const stateMapping = {
     [types.addTagToArticle]: articleService.beginOperateArticle,
     [types.deleteArticle]: articleService.beginOperateArticle,
     [types.removeTagFromArticle]: articleService.beginOperateArticle,
+    [types.endAddTagToArticle]: articleService.endAddTagToArticle,
+    [types.endRemoveTageFromArticle]: articleService.endRemoveTagFromArticle,
 };
 
 export default (state: IArticles = defaultState, action) => {

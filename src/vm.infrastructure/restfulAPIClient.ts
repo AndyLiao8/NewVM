@@ -61,7 +61,7 @@ class RestClient {
     }
 
     delete(params = {}) {
-        return handleNetwork(axios.put(this.API, {
+        return handleNetwork(axios.delete(this.API, {
             headers: {
                 Accept: 'application/json',
             },

@@ -20,7 +20,7 @@ export default ({ tags = [], ...others }: ITagProps) => {
         <React.Fragment>
             <span>
                 {tags.map(t => (
-                    <span onClick={() => { others.onRemoveTag(others.articleId, t.id); }} className="tag">{t.name}</span>
+                    <span onClick={() => { others.onRemoveTag(others.articleId, t.id); }} className="tag">{t && t.name}</span>
                 ))}
             </span>
             <br />
@@ -29,6 +29,7 @@ export default ({ tags = [], ...others }: ITagProps) => {
             }} />
             <Button variant="contained" color="primary" size="small" onClick={() => {
                 others.onAddTag(others.articleId, tagName);
+                setTageName('');
             }}>
                 Add Tag
             </Button>
