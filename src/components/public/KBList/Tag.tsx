@@ -20,7 +20,7 @@ export default ({ tags = [], ...others }: ITagProps) => {
         <React.Fragment>
             <span>
                 {tags.map(t => (
-                    <span onClick={() => { others.onRemoveTag(others.articleId, t.id); }} className="tag">Tag 1</span>
+                    <span onClick={() => { others.onRemoveTag(others.articleId, t.id); }} className="tag">{t.name}</span>
                 ))}
             </span>
             <br />
