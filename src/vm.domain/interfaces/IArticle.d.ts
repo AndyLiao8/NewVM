@@ -1,5 +1,9 @@
+import ITag from './ITag';
+
 export default interface IArticle {
-   id: number;
-   title: string;
-   description: string; 
+   ifOperating?: boolean;
+   id?: number;
+   title?: string;
+   description?: string; 
+   tags?: ITag[],
 }

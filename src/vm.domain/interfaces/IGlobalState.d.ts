@@ -9,8 +9,6 @@ export interface ITags {
 
 export interface IArticles {
     ifLoading: boolean;
-    selectedArticleId: number | null;
-    ifLoadingArticle: boolean;
     articles: Map<number, IArticle>;
 }
 
