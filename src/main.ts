@@ -1,8 +1,8 @@
-import buildStore from './vm.infrastructure/store/buildStore';
+import buildStore from './vm.domain/store/buildStore';
 import renderUI from './render';
 
 // build store
-const store = buildStore();
+const store = window.store = buildStore();
 // initial UI
 renderUI(store);
 

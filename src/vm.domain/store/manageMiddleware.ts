@@ -1,5 +1,5 @@
 import { applyMiddleware, compose } from 'redux';
-import middlewares from './middlewares/index';
+import middlewares from '../middlewares/index';
 
 const bindMiddlewares = applyMiddleware(...middlewares);
 

@@ -1,7 +1,6 @@
 import { createStore } from 'redux';
 import manageMiddleware from './manageMiddleware';
 import manageReducer from './manageReducer';
-import manageSubscribe from './manageSubscribe';
 
 let _store = null;
 
@@ -13,6 +12,5 @@ export default (initialState = null) => {
         null,
         manageMiddleware,
     );
-    manageSubscribe(_store);
     return _store;
 };

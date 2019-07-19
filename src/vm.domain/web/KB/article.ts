@@ -1,7 +1,7 @@
 import { Store } from 'redux';
 import { Map } from 'immutable';
 import { KBAPI } from 'src/config';
-import Client from './restClient';
+import Client from 'src/vm.infrastructure/restfulAPIClient';
 import ITag from 'src/vm.domain/interfaces/ITag';
 import IArticle from 'src/vm.domain/interfaces/IArticle';
 import Action from 'src/vm.domain/actions/action';
@@ -22,7 +22,7 @@ export const getArticles = (store: Store) => {
 };
 
 export const addTagToArticle = (store: Store, action: Action<number, ITag>) => {
-    const client = new Client(`${KBAPI}/articles/${action.meta}:addtag`);
+    const client = new Client(`${KBAPI}/articles/${action.meta}/tags`);
     client.post(action.payload)
     .then((rsp) => {
         if (rsp.isSuccess) {
@@ -42,10 +42,8 @@ export const deleteArticle = (store: Store, action: Action<number, any>) => {
 }
 
 export const removeTagFromArticle = (store: Store, action: Action<number, number>) => {
-    const client = new Client(`${KBAPI}/articles/${action.meta}:removetag`);
-    client.delete({
-        tagId: action.meta,  
-    })
+    const client = new Client(`${KBAPI}/articles/${action.meta}/tags/${action.payload}`);
+    client.delete()
     .then((rsp) => {
         if (rsp.isSuccess) {
             store.dispatch(articleActions.endRemoveTageFromArticle(action.meta, action.payload));
