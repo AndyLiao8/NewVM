@@ -50,13 +50,13 @@ export const deleteArticle = (id: number): Action<number, null> => ({
 });
 
 export const removeTagFromArticle = (articleId: number, tagId: number): Action<number, number> => ({
-    type: types.addTagToArticle,
+    type: types.removeTagFromArticle,
     meta: articleId,
     payload: tagId,
 });
 
 export const addArticle = (article: IArticle): Action<null, IArticle> => ({
-    type: types.addTagToArticle,
+    type: types.addArticle,
     payload: article,
 });
 

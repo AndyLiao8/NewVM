@@ -1,4 +1,28 @@
 import * as articleActions from 'src/vm.domain/actions/articleActions';
+import { State } from 'src/vm.domain/interfaces/IGlobalState';
+import * as selectors from 'src/vm.domain/selectors';
+
+export const mapStateToProps = (state: State) => ({
+    articles: selectors.getArticles(state),
+});
+
+export const mapDispatchToProps = dispatch => ({
+    onGetArticles() {
+        getAllArticles(dispatch);
+    },
+    onAddNewArticle(title: string, description: string) {
+        addArticle(dispatch, title, description);
+    },
+    onDeleteArticle(id: number) {
+        deleteArticle(dispatch, id);
+    },
+    onAddTag(articleId: number, name: string) {
+        addTagToArticle(dispatch, articleId, name);
+    },
+    onRemoveTag(articleId: number, tagId: number) {
+        removeTagFromArticle(dispatch, articleId, tagId);
+    },
+});
 
 export const getAllArticles = (dispatch) => {
     dispatch(articleActions.getArticles());
