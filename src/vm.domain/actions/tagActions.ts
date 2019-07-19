@@ -7,6 +7,11 @@ export const getTags = (): Action<any, any> => ({
     type: types.getTags,
 });
 
+export const addTag = (tag: Map<number, Tag>): Action<number, Map<number, Tag>> => ({
+    type: types.addTag,
+    payload: tag,
+});
+
 export const updateTages = (tags: Map<number, Tag>): Action<number, Map<number, Tag>> => ({
     type: types.updateTags,
     payload: tags,

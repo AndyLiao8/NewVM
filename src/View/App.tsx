@@ -1,8 +1,9 @@
 import * as React from 'react';
+import KBList from './KBList/KBList';
 
 const App = () => (
     <React.Fragment>
-        Hello world
+        <KBList />
     </React.Fragment>
 );
 
