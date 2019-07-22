@@ -25,11 +25,13 @@ class RestClient {
     API:string;
     timeout: number;
     source: CancelTokenSource;
+    token: string;
 
-    constructor(API: string, timeout?: number) {
+    constructor(API: string, token: string, timeout?: number) {
       this.API = API;
       this.timeout = timeout || 3e4;
       this.source = axios.CancelToken.source();
+      this.token = token;
     }
   
     get(params = null) {
@@ -39,6 +41,7 @@ class RestClient {
         }
         return handleNetwork(axios.get(url, {
             headers: {
+                Authorization: `Bearer ${this.token}`,
                 Accept: 'application/json',
             },
         }));
@@ -47,6 +50,7 @@ class RestClient {
     post(params) {
         return handleNetwork(axios.post(this.API, params, {
             headers: {
+                Authorization: `Bearer ${this.token}`,
                 Accept: 'application/json',
             },
         }));
@@ -55,6 +59,7 @@ class RestClient {
     put(params) {
         return handleNetwork(axios.put(this.API, params, {
             headers: {
+                Authorization: `Bearer ${this.token}`,
                 Accept: 'application/json',
             },
         }));
@@ -63,6 +68,7 @@ class RestClient {
     delete(params = {}) {
         return handleNetwork(axios.delete(this.API, {
             headers: {
+                Authorization: `Bearer ${this.token}`,
                 Accept: 'application/json',
             },
             data: params
