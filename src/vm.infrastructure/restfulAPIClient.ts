@@ -1,6 +1,7 @@
 import axios from 'axios';
 import queryString from 'querystring';
 import { CancelTokenSource} from 'axios'
+import { APIDomain } from 'src/config';
 
 export interface IResponse {
     isSuccess: boolean;
@@ -22,20 +23,18 @@ const handleNetwork = axiosPromise => new Promise<IResponse>((resolve, reject) =
 });
 class RestClient {
     /* propos */
-    API:string;
     timeout: number;
-    source: CancelTokenSource;
-    token: string;
+    private source: CancelTokenSource;
+    private token: string;
 
-    constructor(API: string, token: string, timeout?: number) {
-      this.API = API;
+    constructor(token: string, timeout?: number) {
       this.timeout = timeout || 3e4;
       this.source = axios.CancelToken.source();
-      this.token = token;
+      this.token = token || null;
     }
   
-    get(params = null) {
-        let url = this.API;
+    get(resources: string, params = null) {
+        let url = `${APIDomain}/${resources}`;
         if (params) {
             url = `${url}?${queryString.encode(params)}`;
         }
@@ -47,8 +46,8 @@ class RestClient {
         }));
     }
   
-    post(params) {
-        return handleNetwork(axios.post(this.API, params, {
+    post(resources: string, params) {
+        return handleNetwork(axios.post(`${APIDomain}/${resources}`, params, {
             headers: {
                 Authorization: `Bearer ${this.token}`,
                 Accept: 'application/json',
@@ -56,8 +55,8 @@ class RestClient {
         }));
     }
 
-    put(params) {
-        return handleNetwork(axios.put(this.API, params, {
+    put(resources: string, params) {
+        return handleNetwork(axios.put(`${APIDomain}/${resources}`, params, {
             headers: {
                 Authorization: `Bearer ${this.token}`,
                 Accept: 'application/json',
@@ -65,8 +64,8 @@ class RestClient {
         }));
     }
 
-    delete(params = {}) {
-        return handleNetwork(axios.delete(this.API, {
+    delete(resources: string, params = {}) {
+        return handleNetwork(axios.delete(`${APIDomain}/${resources}`, {
             headers: {
                 Authorization: `Bearer ${this.token}`,
                 Accept: 'application/json',
