@@ -3,6 +3,11 @@
     "plugins": [
         ["import", {
             "libraryName": "antd"
-        }]
+        }],
+        ["@babel/plugin-transform-runtime",
+            {
+                "regenerator": true
+            }
+        ]
     ],
 }

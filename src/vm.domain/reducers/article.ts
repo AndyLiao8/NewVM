@@ -1,5 +1,5 @@
 import { Map } from 'immutable';
-import { IArticles } from 'src/vm.domain/interfaces/IGlobalState';
+import { IArticles } from 'src/vm.infrastructure/interfaces/IGlobalState';
 import * as types from 'src/vm.domain/actionTypes/article';
 import * as articleService from './service/articleService';
 

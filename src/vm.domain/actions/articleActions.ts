@@ -1,14 +1,14 @@
 import { Map } from 'immutable';
 import * as types from 'src/vm.domain/actionTypes/article';
 import Action from './action';
-import IArticle from '../interfaces/IArticle';
-import ITag from '../interfaces/ITag';
+import IArticle from '../../vm.infrastructure/interfaces/IArticle';
+import ITag from '../../vm.infrastructure/interfaces/ITag';
 
 export const beginUpdateArticles = (): Action<any, any> => ({
     type: types.beginUpdateArticles,
 });
 
-export const endUpdateArticles = (articles: Map<number, IArticle>): Action<any, Map<number, IArticle>> => ({
+export const endUpdateArticles = (articles: IArticle[]): Action<any, IArticle[]> => ({
     type: types.endUpdateArticles,
     payload: articles,
 });

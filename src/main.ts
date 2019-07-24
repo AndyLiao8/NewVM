@@ -1,4 +1,4 @@
-import buildStore from './vm.domain/store/buildStore';
+import buildStore from './vm.infrastructure/store/buildStore';
 import renderUI from './render';
 import heartBeatManager from 'src/vm.application/heartBeats';
 

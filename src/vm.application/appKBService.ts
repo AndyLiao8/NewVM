@@ -1,5 +1,5 @@
 import * as articleActions from 'src/vm.domain/actions/articleActions';
-import { State } from 'src/vm.domain/interfaces/IGlobalState';
+import { State } from 'src/vm.infrastructure/interfaces/IGlobalState';
 import * as selectors from 'src/vm.domain/selectors';
 
 export const mapStateToProps = (state: State) => ({

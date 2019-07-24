@@ -1,4 +1,4 @@
-import ISession from 'src/vm.domain/interfaces/ISession';
+import ISession from 'src/vm.infrastructure/interfaces/ISession';
 import * as types from 'src/vm.domain/actionTypes/session';
 
 export const updateSession = (session: ISession) => ({

@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import queryString from 'querystring';
-import { CancelTokenSource} from 'axios'
 import { APIDomain } from 'src/config';
+import { getToken } from 'src/vm.infrastructure/store/buildStore';
 
 export interface IResponse {
     isSuccess: boolean;
@@ -21,58 +21,38 @@ const handleNetwork = axiosPromise => new Promise<IResponse>((resolve, reject) =
         }
     });
 });
-class RestClient {
-    /* propos */
-    timeout: number;
-    private source: CancelTokenSource;
-    private token: string;
 
-    constructor(token: string, timeout?: number) {
-      this.timeout = timeout || 3e4;
-      this.source = axios.CancelToken.source();
-      this.token = token || null;
-    }
-  
-    get(resources: string, params = null) {
-        let url = `${APIDomain}/${resources}`;
-        if (params) {
-            url = `${url}?${queryString.encode(params)}`;
-        }
-        return handleNetwork(axios.get(url, {
-            headers: {
-                Authorization: `Bearer ${this.token}`,
-                Accept: 'application/json',
-            },
-        }));
-    }
-  
-    post(resources: string, params) {
-        return handleNetwork(axios.post(`${APIDomain}/${resources}`, params, {
-            headers: {
-                Authorization: `Bearer ${this.token}`,
-                Accept: 'application/json',
-            },
-        }));
-    }
+const getAxiosConfig = (timeout: number = 3e4): AxiosRequestConfig => ({
+    baseURL: APIDomain,
+    timeout,
+    headers: {
+        Authorization: `Bearer ${getToken()}`,
+        Accept: 'application/json',
+    },
+});
 
-    put(resources: string, params) {
-        return handleNetwork(axios.put(`${APIDomain}/${resources}`, params, {
-            headers: {
-                Authorization: `Bearer ${this.token}`,
-                Accept: 'application/json',
-            },
-        }));
+export const httpGet = (resources: string, params = null) => {
+    let url = resources;
+    if (params) {
+        url = `${url}?${queryString.encode(params)}`;
     }
+    return handleNetwork(axios.get(url, getAxiosConfig()));
+};
 
-    delete(resources: string, params = {}) {
-        return handleNetwork(axios.delete(`${APIDomain}/${resources}`, {
-            headers: {
-                Authorization: `Bearer ${this.token}`,
-                Accept: 'application/json',
-            },
-            data: params
-        }));
+export const httpPost = (resources: string, params) => {
+    return handleNetwork(axios.post(resources, params, getAxiosConfig()));
+};
+
+export const httpPut = (resources: string, params) => {
+    return handleNetwork(axios.put(resources, params, getAxiosConfig()));
+};
+
+export const httpDelete = (resources: string, params = null) => {
+    let config = getAxiosConfig();
+    if (params) {
+        config.data = params;
     }
-  }
-
-  export default RestClient;
+    return handleNetwork(axios.delete(resources, {
+        data: params
+    }));
+};

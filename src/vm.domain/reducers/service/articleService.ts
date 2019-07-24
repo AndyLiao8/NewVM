@@ -1,18 +1,22 @@
 import { Map } from 'immutable';
-import { IArticles } from 'src/vm.domain/interfaces/IGlobalState';
+import { IArticles } from 'src/vm.infrastructure/interfaces/IGlobalState';
 import Action from 'src/vm.domain/actions/action';
-import IArticle from 'src/vm.domain/interfaces/IArticle';
-import ITag from 'src/vm.domain/interfaces/ITag';
+import IArticle from 'src/vm.infrastructure/interfaces/IArticle';
+import ITag from 'src/vm.infrastructure/interfaces/ITag';
 
 export const beginUpdateArticles = (state: IArticles): IArticles => {
     return Object.assign({}, state, {
         ifLoading: true,
     });
 };
-export const endUpdateArticles = (state: IArticles, action: Action<any, Map<number, IArticle>>): IArticles => {
+export const endUpdateArticles = (state: IArticles, action: Action<any, IArticle[]>): IArticles => {
+    let newArticles = state.articles;
+    action.payload.forEach((article: IArticle) => {
+        newArticles = newArticles.set(article.id, {...article});
+    });
     return Object.assign({}, state, {
         ifLoading: false,
-        articles: state.articles.merge(action.payload),
+        articles: newArticles,
     });
 };
 export const beginOperateArticle = (state: IArticles, action: Action<number, any>): IArticles => {

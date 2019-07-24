@@ -1,5 +1,5 @@
 import reduceReducers from 'src/utils/reduceReducers';
-import reducers, { reducerOrder } from '../reducers';
+import reducers, { reducerOrder } from 'src/vm.domain/reducers';
 
 const reducer = reduceReducers(reducers, reducerOrder);
 
