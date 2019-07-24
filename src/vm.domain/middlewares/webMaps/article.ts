@@ -4,29 +4,55 @@ import ITag from 'src/vm.infrastructure/interfaces/ITag';
 import IArticle from 'src/vm.infrastructure/interfaces/IArticle';
 import Action from 'src/vm.domain/actions/action';
 import * as articleActions from 'src/vm.domain/actions/articleActions';
-import * as articleService from 'src/vm.infrastructure/web/KB/articleService';
+import * as uiActions from 'src/vm.domain/actions/uiActions';
+import * as articleWebService from 'src/vm.infrastructure/web/KB/articleService';
 
-export const getArticles = async (store: Store) => {
-    const rsp = await articleService.getArticles();
-    store.dispatch(articleActions.endUpdateArticles(rsp.data));
+export const getArticles = (store: Store) => {
+    articleWebService.getArticles()
+    .then((rsp) => {
+        store.dispatch(articleActions.endUpdateArticles(rsp.data));
+    },
+    (err) => {
+        store.dispatch(uiActions.updateGlobalError(err));
+    });
 };
 
-export const addTagToArticle = async (store: Store, action: Action<number, ITag>) => {
-    const rsp = await articleService.addTagToArticle(action.meta, action.payload);
-    store.dispatch(articleActions.endAddTagToArticle(action.meta, rsp.data));
+export const addTagToArticle = (store: Store, action: Action<number, ITag>) => {
+    articleWebService.addTagToArticle(action.meta, action.payload)
+    .then((rsp) => {
+        store.dispatch(articleActions.endAddTagToArticle(action.meta, rsp.data));
+    },
+    (err) => {
+        store.dispatch(uiActions.updateGlobalError(err));
+    });
 }
 
-export const deleteArticle = async (store: Store, action: Action<number, any>) => {
-    const rsp = await articleService.deleteArticle(action.meta);
-    store.dispatch(articleActions.endDeleteSingleArticle(action.meta));
+export const deleteArticle = (store: Store, action: Action<number, any>) => {
+    articleWebService.deleteArticle(action.meta)
+    .then((rsp) => {
+        store.dispatch(articleActions.endDeleteSingleArticle(action.meta));
+    },
+    (err) => {
+        store.dispatch(uiActions.updateGlobalError(err));
+    });
 }
 
-export const removeTagFromArticle = async (store: Store, action: Action<number, number>) => {
-    const rsp = await articleService.removeTagFromArticle(action.meta, action.payload);
-    store.dispatch(articleActions.endRemoveTageFromArticle(action.meta, action.payload));
+export const removeTagFromArticle = (store: Store, action: Action<number, number>) => {
+    articleWebService.removeTagFromArticle(action.meta, action.payload)
+    .then((rsp) => {
+        store.dispatch(articleActions.endRemoveTageFromArticle(action.meta, action.payload));
+    },
+    (err) => {
+        store.dispatch(uiActions.updateGlobalError(err));
+    });
 }
 
-export const addArticle = async (store: Store, action: Action<null, IArticle>) => {
-    const rsp = await articleService.addArticle(action.payload);
-    store.dispatch(articleActions.endUpdateSingleArticle(rsp.data));
+export const addArticle = (store: Store, action: Action<null, IArticle>) => {
+    articleWebService.addArticle(action.payload)
+    .then((rsp) => {
+        store.dispatch(articleActions.endUpdateSingleArticle(rsp.data));
+    },
+    (err) => {
+        store.dispatch(uiActions.updateGlobalError(err));
+    });
 }
